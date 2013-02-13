@@ -3,6 +3,7 @@ package cz.cuni.mff.d3s.jdeeco.visualization.map;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -32,21 +33,27 @@ public class ObjectController {
 		button.setStyle("-fx-base: "+color+"; -fx-font-weight: bold; -fx-font-size: 12px;");
 	}
 	
-	public void setPositions(List<Position> positions, boolean animate) {
-		if (positions.size() >= 1) {
-			Position first = positions.remove(0);
-			if (!first.equals(currentPosition)) {
-				currentPosition = first;
-				Position translated = translate(currentPosition);
-				if (animate) {
-					MovementAnimation.play(animationSpeed, translated, button);
-				} else {
-					button.setLayoutX(translated.x);
-					button.setLayoutY(translated.y);
-				}
-				remainingPositions = positions;
+	public void setPositions(final List<Position> positions, final boolean animate) {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				if (positions.size() >= 1) {
+					Position first = positions.remove(0);
+					if (!first.equals(currentPosition)) {
+						currentPosition = first;
+						Position translated = translate(currentPosition);
+						if (animate) {
+							MovementAnimation.play(animationSpeed, translated, button);
+						} else {
+							button.setLayoutX(translated.x);
+							button.setLayoutY(translated.y);
+						}
+						remainingPositions = positions;
+					}
+				}	
 			}
-		}		
+		});
 	}
 	
 	private Position translate(Position position) {

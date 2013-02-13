@@ -60,16 +60,9 @@ public class Board {
 			Set<String> keys = objectControllers.keySet();
 			for (BoardObject bo : objects) {
 				if (keys.contains(bo.id)) {
-					final ObjectController oc = objectControllers.get(bo.id);
-					final List<Position> boPositions = bo.positions;
-					
-					Platform.runLater(new Runnable() {
-						
-						@Override
-						public void run() {
-							oc.setPositions(boPositions, true);							
-						}
-					});
+					ObjectController oc = objectControllers.get(bo.id);
+					List<Position> boPositions = bo.positions;
+					oc.setPositions(boPositions, true);							
 				} else if (bc != null) {
 					try {
 						ObjectController oc = bc.addObject(bo);

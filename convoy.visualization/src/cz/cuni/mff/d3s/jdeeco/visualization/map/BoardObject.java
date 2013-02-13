@@ -9,6 +9,8 @@ public class BoardObject implements Serializable {
 	public List<Position> positions;
 	public String color;
 	
+	public BoardObject() {}
+	
 	public BoardObject(String id, List<Position> positions, String color, String label) {
 		this.id = id;
 		this.positions = positions;

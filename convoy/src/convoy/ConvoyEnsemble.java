@@ -12,7 +12,7 @@ import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
 import cz.cuni.mff.d3s.deeco.knowledge.OutWrapper;
 
 @DEECoEnsemble
-@DEECoPeriodicScheduling(800)
+@DEECoPeriodicScheduling(1500)
 public class ConvoyEnsemble extends Ensemble {
 
 	@DEECoEnsembleMembership

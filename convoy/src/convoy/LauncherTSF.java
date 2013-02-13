@@ -16,12 +16,10 @@ import cz.cuni.mff.d3s.deeco.scheduling.Scheduler;
  * This class provides code that instantiates the necessary jDEECo infrastructure on multiple node,
  * deploys components and ensembles of the demo.
  */
-public class LauncherTS {
+public class LauncherTSF {
 
 	public static void main(String[] args) {
 		List<Class<?>> components = Arrays.asList(new Class<?>[] {
-				LeaderA.class, 
-				LeaderB.class, 
 				Follower.class,
 				Visualizer.class,
 		});

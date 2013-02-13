@@ -13,13 +13,13 @@ public class Waypoint extends Knowledge {
 		this.y = y;
 	}
 	
-	public int x, y;
+	public Integer x, y;
 	
 	@Override
 	public boolean equals(Object that) {
 		if (that instanceof Waypoint) {
 			Waypoint thatWaypoint = (Waypoint)that;
-			return thatWaypoint.x == x && thatWaypoint.y == y;
+			return thatWaypoint.x.equals(x) && thatWaypoint.y.equals(y);
 		} else {
 			return false;
 		}

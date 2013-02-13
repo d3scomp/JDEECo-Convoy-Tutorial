@@ -30,7 +30,7 @@ public class Visualizer extends ComponentKnowledge {
 	}
 	
 	@DEECoProcess
-	@DEECoPeriodicScheduling(300)
+	@DEECoPeriodicScheduling(900)
 	public static void process(@DEECoIn("components") Map<String, BoardObject> components) {
 		Board.getInstance().updateObjects(components.values());
 	}

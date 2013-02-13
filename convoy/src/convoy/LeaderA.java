@@ -11,13 +11,13 @@ import cz.cuni.mff.d3s.deeco.annotations.DEECoProcess;
 import cz.cuni.mff.d3s.deeco.knowledge.ComponentKnowledge;
 
 @DEECoComponent
-public class Leader extends ComponentKnowledge {
+public class LeaderA extends ComponentKnowledge {
 	
 	public String name;
 	public List<Waypoint> path;
 	public Waypoint position;
 	
-	public Leader() {
+	public LeaderA() {
 		path = new LinkedList<Waypoint>();
 		path.add(new Waypoint(8, 7));		
 		path.add(new Waypoint(8, 6));
@@ -47,7 +47,7 @@ public class Leader extends ComponentKnowledge {
 	}
 	
 	@DEECoProcess
-	@DEECoPeriodicScheduling(3000)
+	@DEECoPeriodicScheduling(2500)
 	public static void moveProcess(
 			@DEECoInOut("path") List<Waypoint> path,
 			@DEECoIn("name") String name,

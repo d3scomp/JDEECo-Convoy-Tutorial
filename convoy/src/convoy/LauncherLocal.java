@@ -11,8 +11,6 @@ import cz.cuni.mff.d3s.deeco.provider.ClassDEECoObjectProvider;
 import cz.cuni.mff.d3s.deeco.runtime.Runtime;
 import cz.cuni.mff.d3s.deeco.scheduling.MultithreadedScheduler;
 import cz.cuni.mff.d3s.deeco.scheduling.Scheduler;
-import cz.cuni.mff.d3s.jdeeco.visualization.map.Board;
-import cz.cuni.mff.d3s.jdeeco.visualization.map.IStoppable;
 
 /** Launcher for the local deployment.
  * This class provides code that instantiates the necessary jDEECo infrastructure on a single node,
@@ -22,7 +20,8 @@ public class LauncherLocal {
 
 	public static void main(String[] args) {
 		List<Class<?>> components = Arrays.asList(new Class<?>[] {
-				Leader.class, 
+				LeaderA.class, 
+				LeaderB.class, 
 				Follower.class,
 				Visualizer.class,
 		});
