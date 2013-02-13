@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;

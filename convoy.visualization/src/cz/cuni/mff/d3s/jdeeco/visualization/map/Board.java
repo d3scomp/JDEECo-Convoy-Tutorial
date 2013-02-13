@@ -2,8 +2,11 @@ package cz.cuni.mff.d3s.jdeeco.visualization.map;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javafx.application.Platform;
 
 public class Board {
 	private static Board instance = null;
@@ -55,14 +58,21 @@ public class Board {
 	public synchronized void updateObjects(Collection<BoardObject> objects) {
 		if (bc != null) {
 			Set<String> keys = objectControllers.keySet();
-			ObjectController oc;
 			for (BoardObject bo : objects) {
 				if (keys.contains(bo.id)) {
-					oc = objectControllers.get(bo.id);
-					oc.setPositions(bo.positions, true);
+					final ObjectController oc = objectControllers.get(bo.id);
+					final List<Position> boPositions = bo.positions;
+					
+					Platform.runLater(new Runnable() {
+						
+						@Override
+						public void run() {
+							oc.setPositions(boPositions, true);							
+						}
+					});
 				} else if (bc != null) {
 					try {
-						oc = bc.addObject(bo);
+						ObjectController oc = bc.addObject(bo);
 						objectControllers.put(bo.id, oc);
 					} catch (Exception e) {
 						e.printStackTrace();
