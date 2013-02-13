@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+
+<Circle fill="DODGERBLUE" strokeWidth="0.0" xmlns:fx="http://javafx.com/fxml"
+	fx:controller="cz.cuni.mff.d3s.jdeeco.visualization.map.CircleController"
+	fx:id="circle" opacity="0.0"/>
+
