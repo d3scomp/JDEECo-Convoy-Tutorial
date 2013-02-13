@@ -2,8 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/convoy.visualization"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/cz.cuni.mff.d3s.jdeeco.core"/>
 	<classpathentry kind="lib" path="libs/jfxrt.jar"/>
+	<classpathentry kind="lib" path="libs/jdeeco.jar"/>
+	<classpathentry kind="lib" path="libs/visualizer.jar"/>
+	<classpathentry kind="lib" path="libs/cz.cuni.mff.d3s.bcel-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/cz.cuni.mff.d3s.jini-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
