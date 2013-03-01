@@ -10,8 +10,8 @@ There are two robots named "Leader" and "Follower". The leader moves along some 
 ### Code snippets
 
 * **Launcher**:
-```java
 
+```java
 public class LauncherLocal {
 
   public static void main(String[] args) {
@@ -50,6 +50,7 @@ public class LauncherLocal {
 ```
 
 * **Leader**:
+
 ```java
 @DEECoComponent
 public class Leader extends ComponentKnowledge {
@@ -86,6 +87,7 @@ public class Leader extends ComponentKnowledge {
 }
 ```
 * **Follower**:
+
 ```java
 @DEECoComponent
 public class Follower extends ComponentKnowledge {
@@ -114,6 +116,7 @@ public class Follower extends ComponentKnowledge {
 }
 ```
 * **Convoy ensemble**:
+
 ```java
 @DEECoEnsemble
 @DEECoPeriodicScheduling(800)
