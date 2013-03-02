@@ -18,13 +18,18 @@ There are two robots named "Leader" and "Follower". The leader moves along some 
 ## Requirements
 To compile and run the example from command line, the following software has to be available on your system:
 * Java SDK >= 1.6.0 (http://java.com/en/)
-* jDEEco runtime framework JAR (https://github.com/d3scomp/JDEECo)
+* one of the following:
+	* Apache Maven (http://maven.apache.org/), version 3.04 was used when writing the script
+	* Elcipse + jDEEco runtime framework JAR ([jDEECo maven repository](https://github.com/d3scomp/mvn-repo/blob/master/snapshots/cz/cuni/mff/d3s/jdeeco/cz.cuni.mff.d3s.jdeeco.core/0.0.1/cz.cuni.mff.d3s.jdeeco.core-0.0.1.jar?raw=true))
 
 To compile and run the visualisation tool for the example, you need the following:
 * JavaFX >= 2 (http://www.oracle.com/technetwork/java/javafx/)
 
 ## Building and running the example
-TODO
+*TODO:* Building is performed by simply executing `mvn clean install` command in the root folder. 
+All the generated binaries together with zipped sources are placed in the `dist` folder.
+
+Alternatively, you can import and build the example projects into Eclipse, provided you have the jDEEco runtime framework JAR ([jDEECo maven repository](https://github.com/d3scomp/mvn-repo/blob/master/snapshots/cz/cuni/mff/d3s/jdeeco/cz.cuni.mff.d3s.jdeeco.core/0.0.1/cz.cuni.mff.d3s.jdeeco.core-0.0.1.jar?raw=true)) on your build path.
 
 ## Code snippets
 
