@@ -1,7 +1,7 @@
 JDEECo Convoy Tutorial
 ======================
 
-This project contains the source code of the **Convoy example** implementation in the **jDEECo framework** (the source code and documentation of jDeeco is available at https://github.com/d3scomp/JDEECo).
+This project contains the source code of the **Convoy example** implementation in the **jDEECo framework** (the source code and documentation of jDEECo is available at https://github.com/d3scomp/JDEECo).
 
 **Example Scenario Description**:
 
