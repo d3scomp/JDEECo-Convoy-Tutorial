@@ -4,11 +4,29 @@ JDEECo Convoy Tutorial
 This project contains the source code of the **Convoy example** implementation in the **jDEECo framework**.
 jDEECo is a Java implementation of the DEECo domponent system (the source code and documentation of jDEECo is available at https://github.com/d3scomp/JDEECo).
 
-**Example Scenario Description**:
-
+###Example Scenario Description
 There are two robots named "Leader" and "Follower". The leader moves along some arbitrary path (composed by the list of intermediate positions, which reflect fields on some abstract map, being a grid). The follower remains idle until the leader heading through Follower's destination passes next to it (Leader crosses Follower's current position). When that happens, the follower starts to move following the leader.
 
-### Code snippets
+###Outline
+1. [Requirements](#requirements)
+2. [Usage](#building-and-running-the-example)
+2. [Code snippets](#code-snippets)
+3. [Code description](#code-description)
+
+
+
+## Requirements
+To compile and run the example from command line, the following software has to be available on your system:
+* Java SDK >= 1.6.0 (http://java.com/en/)
+* jDEEco runtime framework JAR (https://github.com/d3scomp/JDEECo)
+
+To compile and run the visualisation tool for the example, you need the following:
+* JavaFX >= 2 (http://www.oracle.com/technetwork/java/javafx/)
+
+## Building and running the example
+TODO
+
+## Code snippets
 
 * **Launcher**:
 
@@ -145,7 +163,7 @@ public class ConvoyEnsemble extends Ensemble {
 	}
 }
 ```
-
+## Code description
 ### Launcher
 
 The `Launcher` class main method instantiates the DEECo runtime, which automatically starts its operation - classes are "interpreted" and appropriate processes are started.
