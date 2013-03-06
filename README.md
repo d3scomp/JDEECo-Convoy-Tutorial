@@ -36,11 +36,30 @@ Alternatively, you can import and build the example projects into Eclipse, provi
 * **Launcher**:
 
 ```java
+package convoy;
+
+import java.util.Arrays;
+import java.util.List;
+
+import cz.cuni.mff.d3s.deeco.knowledge.KnowledgeManager;
+import cz.cuni.mff.d3s.deeco.knowledge.RepositoryKnowledgeManager;
+import cz.cuni.mff.d3s.deeco.knowledge.local.LocalKnowledgeRepository;
+import cz.cuni.mff.d3s.deeco.provider.AbstractDEECoObjectProvider;
+import cz.cuni.mff.d3s.deeco.provider.ClassDEECoObjectProvider;
+import cz.cuni.mff.d3s.deeco.runtime.Runtime;
+import cz.cuni.mff.d3s.deeco.scheduling.MultithreadedScheduler;
+import cz.cuni.mff.d3s.deeco.scheduling.Scheduler;
+
+/** Launcher for the local deployment.
+ * This class provides code that instantiates the necessary jDEECo infrastructure on a single node,
+ * deploys components and ensembles of the demo.
+ */
 public class LauncherLocal {
 
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 		List<Class<?>> components = Arrays.asList(new Class<?>[] {
-				Leader.class, 
+				LeaderA.class, 
+				LeaderB.class, 
 				Follower.class,
 				Visualizer.class,
 		});
@@ -56,40 +75,54 @@ public class LauncherLocal {
 		AbstractDEECoObjectProvider provider = new ClassDEECoObjectProvider(components, ensembles);
 		
 		final Runtime rt = new Runtime(km, scheduler);
-		Board.getInstance().setStoppable(new IStoppable() {
-			
-			@Override
-			public void stop() {
-				
-				rt.stopRuntime();
-				
-			}
-		});
-
 		rt.registerComponentsAndEnsembles(provider);
 		rt.startRuntime();
 	}
 
 }
+
 ```
 
 * **Leader**:
 
 ```java
+package convoy;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import cz.cuni.mff.d3s.deeco.annotations.DEECoComponent;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoIn;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoInOut;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoPeriodicScheduling;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoProcess;
+import cz.cuni.mff.d3s.deeco.knowledge.ComponentKnowledge;
+
 @DEECoComponent
-public class Leader extends ComponentKnowledge {
+public class LeaderA extends ComponentKnowledge {
 	
 	public String name;
-	public List<Waypoint> path = new LinkedList<Waypoint>();
+	public List<Waypoint> path;
 	public Waypoint position;
 	
-	@DEECoInitialize
-	public static List<Leader> getInitKnowledge() {
-		return LeaderFactory.getLeaders();		
+	public LeaderA() {
+		path = new LinkedList<Waypoint>();
+		path.add(new Waypoint(8, 7)); path.add(new Waypoint(8, 6)); path.add(new Waypoint(8, 5));
+		path.add(new Waypoint(7, 5)); path.add(new Waypoint(6, 5));	path.add(new Waypoint(5, 5));
+		path.add(new Waypoint(4, 5)); path.add(new Waypoint(3, 5));	path.add(new Waypoint(2, 5));
+		path.add(new Waypoint(1, 5)); path.add(new Waypoint(0, 5));	path.add(new Waypoint(0, 4));
+		path.add(new Waypoint(0, 3)); path.add(new Waypoint(0, 2));	path.add(new Waypoint(1, 2));
+		path.add(new Waypoint(2, 2)); path.add(new Waypoint(3, 2));	path.add(new Waypoint(4, 2));
+		path.add(new Waypoint(5, 2)); path.add(new Waypoint(6, 2));	path.add(new Waypoint(7, 2));
+		path.add(new Waypoint(8, 2)); path.add(new Waypoint(9, 2));	path.add(new Waypoint(9, 1));
+		path.add(new Waypoint(9, 0));
+
+		name = "L1";
+		position = new Waypoint(8,8);
 	}
 	
 	@DEECoProcess
-	@DEECoPeriodicScheduling(3000)
+	@DEECoPeriodicScheduling(1000)
 	public static void moveProcess(
 			@DEECoInOut("path") List<Waypoint> path,
 			@DEECoIn("name") String name,
@@ -113,6 +146,15 @@ public class Leader extends ComponentKnowledge {
 * **Follower**:
 
 ```java
+package convoy;
+
+import cz.cuni.mff.d3s.deeco.annotations.DEECoComponent;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoIn;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoInOut;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoPeriodicScheduling;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoProcess;
+import cz.cuni.mff.d3s.deeco.knowledge.ComponentKnowledge;
+
 @DEECoComponent
 public class Follower extends ComponentKnowledge {
 
@@ -122,7 +164,7 @@ public class Follower extends ComponentKnowledge {
 	public Waypoint leaderPosition;
 	
 	@DEECoProcess
-	@DEECoPeriodicScheduling(2000)
+	@DEECoPeriodicScheduling(1000)
 	public static void followProcess(
 		@DEECoInOut("position") Waypoint me,
 		@DEECoIn("destination") Waypoint destination, 
@@ -142,8 +184,21 @@ public class Follower extends ComponentKnowledge {
 * **Convoy ensemble**:
 
 ```java
+package convoy;
+
+import java.util.List;
+
+import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsemble;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsembleMapper;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsembleMembership;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoIn;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoOut;
+import cz.cuni.mff.d3s.deeco.annotations.DEECoPeriodicScheduling;
+import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
+import cz.cuni.mff.d3s.deeco.knowledge.OutWrapper;
+
 @DEECoEnsemble
-@DEECoPeriodicScheduling(800)
+@DEECoPeriodicScheduling(200)
 public class ConvoyEnsemble extends Ensemble {
 
 	@DEECoEnsembleMembership
@@ -171,7 +226,7 @@ public class ConvoyEnsemble extends Ensemble {
 ## Code description
 ### Launcher
 
-The `Launcher` class main method instantiates the DEECo runtime, which automatically starts its operation - classes are "interpreted" and appropriate processes are started.
+The `LauncherLocal` class main method instantiates the DEECo runtime, which automatically starts its operation - classes are "interpreted" and appropriate processes are started.
 
 ### Robot Follower and robot Leader
 
