@@ -16,7 +16,7 @@ public class Follower extends ComponentKnowledge {
 	public Waypoint leaderPosition;
 	
 	@DEECoProcess
-	@DEECoPeriodicScheduling(1800)
+	@DEECoPeriodicScheduling(1000)
 	public static void followProcess(
 		@DEECoInOut("position") Waypoint me,
 		@DEECoIn("destination") Waypoint destination, 

@@ -20,7 +20,7 @@ public class Visualizer extends ComponentKnowledge {
 	
 	public Visualizer() {
 		Board bInstance = Board.getInstance();
-		bInstance.setAnimationSpeed(300);
+		bInstance.setAnimationSpeed(80);
 		bInstance.setStoppable(new IStoppable() {
 			@Override
 			public void stop() {

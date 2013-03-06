@@ -39,7 +39,7 @@ public class LeaderB extends ComponentKnowledge {
 	}
 	
 	@DEECoProcess
-	@DEECoPeriodicScheduling(2400)
+	@DEECoPeriodicScheduling(1000)
 	public static void moveProcess(
 			@DEECoInOut("path") List<Waypoint> path,
 			@DEECoIn("name") String name,

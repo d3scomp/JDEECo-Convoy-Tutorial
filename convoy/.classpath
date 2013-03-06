@@ -5,7 +5,5 @@
 	<classpathentry kind="lib" path="libs/jfxrt.jar"/>
 	<classpathentry kind="lib" path="libs/jdeeco.jar"/>
 	<classpathentry kind="lib" path="libs/visualizer.jar"/>
-	<classpathentry kind="lib" path="libs/cz.cuni.mff.d3s.bcel-1.0.0.jar"/>
-	<classpathentry kind="lib" path="libs/cz.cuni.mff.d3s.jini-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

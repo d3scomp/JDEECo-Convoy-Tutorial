@@ -15,7 +15,7 @@ import cz.cuni.mff.d3s.jdeeco.visualization.map.BoardObject;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.Position;
 
 @DEECoEnsemble
-@DEECoPeriodicScheduling(1200)
+@DEECoPeriodicScheduling(150)
 public class LeaderVisualizerEnsemble extends Ensemble {
 	
 	@DEECoEnsembleMembership
