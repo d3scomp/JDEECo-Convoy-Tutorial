@@ -33,9 +33,9 @@ Alternatively, you can import and build the example projects into Eclipse, provi
 
 ## Code snippets
 
-* **Launcher**:
-
+### Launcher
 ```java
+
 package convoy;
 
 import java.util.Arrays;
@@ -83,8 +83,7 @@ public class LauncherLocal {
 
 ```
 
-* **Leader**:
-
+### Leader
 ```java
 package convoy;
 
@@ -142,9 +141,9 @@ public class LeaderA extends ComponentKnowledge {
 		System.out.println("Leader " + name + ": " + me);
 	}
 }
-```
-* **Follower**:
 
+```
+###Follower
 ```java
 package convoy;
 
@@ -181,8 +180,7 @@ public class Follower extends ComponentKnowledge {
 	}
 }
 ```
-* **Convoy ensemble**:
-
+### Convoy ensemble
 ```java
 package convoy;
 
@@ -223,7 +221,7 @@ public class ConvoyEnsemble extends Ensemble {
 	}
 }
 ```
-## Code description
+##Code description
 ### Launcher
 
 The `LauncherLocal` class main method instantiates the DEECo runtime, which automatically starts its operation - classes are "interpreted" and appropriate processes are started.
