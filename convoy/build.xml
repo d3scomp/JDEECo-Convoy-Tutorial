@@ -6,6 +6,7 @@
 	<property name="lib" location="${basedir}/libs"/>
 		
 	<target name="build">
+		<mkdir dir="${bin}"/>
 		 <javac srcdir="${src}" destdir="${bin}" source="1.7" includeantruntime="false">
 		 	<classpath>				
 				<fileset dir="${lib}" includes="*.jar"/>								
@@ -20,5 +21,9 @@
 				<fileset dir="${lib}" includes="*.jar"/>								
 			</classpath>
 		</java>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${bin}"/>		 
 	</target>
 </project>

@@ -1,0 +1,5 @@
+<project name="JDEECo-Convoy-Tutorial wrapper" default="build" basedir="convoy">
+	<description>JDEECo-Convoy-Tutorial wrapper build file</description>
+	
+	<import file="convoy/build.xml" />
+</project>
