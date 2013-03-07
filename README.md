@@ -27,10 +27,10 @@ To build and run the visualisation tool for the example, you need the following:
 
 ## Usage
 1. Download the repository as a zip package and unpack it.
-2. To build the example, execute the `ant` command in the root folder. 
+2. Build the example by executing `ant` in the root folder. 
 Alternatively, you can import the `convoy` project into Eclipse and build it via Eclipse.
 For convenience a full package containing the binaries, source code, and all dependencies of the tutorial is available at http://d3s.mff.cuni.cz/projects/components_and_services/deeco/files/convoy.zip.
-3. To run the example, execute the `ant run` command in the root folder.
+3. Run the example by executing `ant run` in the root folder.
 Alternatively, after importing the `convoy` project into Eclipse, run the `LauncherLocal` class "as Java Application".
 
 ## Code snippets
