@@ -9,29 +9,34 @@ There are two robots named "Leader" and "Follower". The leader moves along some 
 
 ###Outline
 1. [Requirements](#requirements)
-2. [Usage](#building-and-running-the-example)
+2. [Usage](#usage)
 2. [Code snippets](#code-snippets)
 3. [Code description](#code-description)
 
 
 
 ## Requirements
-To compile and run the example from command line, the following software has to be available on your system:
+To build and run the example from command line, the following software has to be available on your system:
 * Java SDK >= 1.7.0 (http://java.com/en/)
 * one of the following:
-	* Apache Maven (http://maven.apache.org/), version 3.04 was used when writing the script
-	* Elcipse + jDEEco runtime framework JAR ([jDEECo maven repository](https://github.com/d3scomp/mvn-repo/blob/master/snapshots/cz/cuni/mff/d3s/jdeeco/cz.cuni.mff.d3s.jdeeco.core/0.0.1/cz.cuni.mff.d3s.jdeeco.core-0.0.1.jar?raw=true))
+	* Apache Ant (http://ant.apache.org/), version 1.8.2 was used when writing the build scripts
+	* Elcipse
 
-To compile and run the visualisation tool for the example, you need the following:
+To build and run the visualisation tool for the example, you need the following:
 * JavaFX >= 2 (http://www.oracle.com/technetwork/java/javafx/)
 
-## Building and running the example
-*TODO:* Building is performed by simply executing `mvn clean install` command in the root folder. 
-All the generated binaries together with zipped sources are placed in the `dist` folder.
+## Usage
+####Building the example
+Building is performed by simply executing `ant` command in the root folder. 
 
-Alternatively, you can import and build the example projects into Eclipse, provided you have the jDEEco runtime framework JAR ([jDEECo maven repository](https://github.com/d3scomp/mvn-repo/blob/master/snapshots/cz/cuni/mff/d3s/jdeeco/cz.cuni.mff.d3s.jdeeco.core/0.0.1/cz.cuni.mff.d3s.jdeeco.core-0.0.1.jar?raw=true)) on your build path.
+Alternatively, you can import the `convoy` project into Eclipse and build it via Eclipse.
 
-For convenience a package containing the binaries, source code, and all dependencies of the tutorial is available at http://d3s.mff.cuni.cz/projects/components_and_services/deeco/files/convoy.zip.
+For convenience a full package containing the binaries, source code, and all dependencies of the tutorial is available at http://d3s.mff.cuni.cz/projects/components_and_services/deeco/files/convoy.zip.
+
+#### Running the example
+You can run the example on the command line by simply executing `ant run` command in the root folder.
+
+Alternatively, after importing the `convoy` project into Eclipse, run the `LauncherLocal` class "as Java Application".
 
 ## Code snippets
 
