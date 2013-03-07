@@ -17,7 +17,7 @@ There are two robots named "Leader" and "Follower". The leader moves along some 
 
 ## Requirements
 To compile and run the example from command line, the following software has to be available on your system:
-* Java SDK >= 1.6.0 (http://java.com/en/)
+* Java SDK >= 1.7.0 (http://java.com/en/)
 * one of the following:
 	* Apache Maven (http://maven.apache.org/), version 3.04 was used when writing the script
 	* Elcipse + jDEEco runtime framework JAR ([jDEECo maven repository](https://github.com/d3scomp/mvn-repo/blob/master/snapshots/cz/cuni/mff/d3s/jdeeco/cz.cuni.mff.d3s.jdeeco.core/0.0.1/cz.cuni.mff.d3s.jdeeco.core-0.0.1.jar?raw=true))
