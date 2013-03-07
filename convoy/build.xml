@@ -1,0 +1,24 @@
+<project name="JDEECo-Convoy-Tutorial" default="build" basedir=".">
+	<description>JDEECo-Convoy-Tutorial build file</description>
+	
+	<property name="bin" location="${basedir}/bin"/>
+	<property name="src" location="${basedir}/src"/>
+	<property name="lib" location="${basedir}/libs"/>
+		
+	<target name="build">
+		 <javac srcdir="${src}" destdir="${bin}" source="1.7" includeantruntime="false">
+		 	<classpath>				
+				<fileset dir="${lib}" includes="*.jar"/>								
+			</classpath>
+		 </javac>
+	</target>
+
+	<target name="run" depends="build">
+		<java fork="true" dir="${basedir}" classname="convoy.LauncherLocal" >
+			<classpath>
+				<pathelement location="${bin}"/>
+				<fileset dir="${lib}" includes="*.jar"/>								
+			</classpath>
+		</java>
+	</target>
+</project>
