@@ -31,7 +31,7 @@ All the generated binaries together with zipped sources are placed in the `dist`
 
 Alternatively, you can import and build the example projects into Eclipse, provided you have the jDEEco runtime framework JAR ([jDEECo maven repository](https://github.com/d3scomp/mvn-repo/blob/master/snapshots/cz/cuni/mff/d3s/jdeeco/cz.cuni.mff.d3s.jdeeco.core/0.0.1/cz.cuni.mff.d3s.jdeeco.core-0.0.1.jar?raw=true)) on your build path.
 
-For convenience a package containing the binaries and source code of the tutorial is available at http://d3s.mff.cuni.cz/projects/components_and_services/deeco/files/convoy.zip.
+For convenience a package containing the binaries, source code, and all dependencies of the tutorial is available at http://d3s.mff.cuni.cz/projects/components_and_services/deeco/files/convoy.zip.
 
 ## Code snippets
 
