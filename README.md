@@ -20,10 +20,7 @@ To build and run the example from command line, the following software has to be
 * Java SDK >= 1.7.0 (http://java.com/en/)
 * one of the following:
 	* Apache Ant (http://ant.apache.org/), version 1.8.2 was used when writing the build scripts
-	* Elcipse
-
-To build and run the visualisation tool for the example, you need the following:
-* JavaFX >= 2 (http://www.oracle.com/technetwork/java/javafx/)
+	* Eclipse for Java developers
 
 ## Usage
 1. Download the repository as a zip package and unpack it.
