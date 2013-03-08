@@ -1,27 +1,27 @@
 package convoy;
 
 import cz.cuni.mff.d3s.deeco.annotations.DEECoComponent;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoIn;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoInOut;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoPeriodicScheduling;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoProcess;
-import cz.cuni.mff.d3s.deeco.knowledge.ComponentKnowledge;
+import cz.cuni.mff.d3s.deeco.annotations.In;
+import cz.cuni.mff.d3s.deeco.annotations.InOut;
+import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
+import cz.cuni.mff.d3s.deeco.annotations.Process;
+import cz.cuni.mff.d3s.deeco.knowledge.Component;
 
 @DEECoComponent
-public class Follower extends ComponentKnowledge {
+public class Follower extends Component {
 
 	public String name = "F";
 	public Waypoint position = new Waypoint(1, 4);
 	public Waypoint destination = new Waypoint(7, 2);
 	public Waypoint leaderPosition;
 	
-	@DEECoProcess
-	@DEECoPeriodicScheduling(1000)
+	@Process
+	@PeriodicScheduling(1000)
 	public static void followProcess(
-		@DEECoInOut("position") Waypoint me,
-		@DEECoIn("destination") Waypoint destination, 
-		@DEECoIn("name") String name, 
-		@DEECoIn("leaderPosition") Waypoint leader 
+		@InOut("position") Waypoint me,
+		@In("destination") Waypoint destination, 
+		@In("name") String name, 
+		@In("leaderPosition") Waypoint leader 
 		) {
 		
 		if (!destination.equals(me) && leader != null) {

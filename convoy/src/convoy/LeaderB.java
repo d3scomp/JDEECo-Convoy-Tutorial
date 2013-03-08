@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import cz.cuni.mff.d3s.deeco.annotations.DEECoComponent;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoIn;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoInOut;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoPeriodicScheduling;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoProcess;
-import cz.cuni.mff.d3s.deeco.knowledge.ComponentKnowledge;
+import cz.cuni.mff.d3s.deeco.annotations.In;
+import cz.cuni.mff.d3s.deeco.annotations.InOut;
+import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
+import cz.cuni.mff.d3s.deeco.annotations.Process;
+import cz.cuni.mff.d3s.deeco.knowledge.Component;
 
 @DEECoComponent
-public class LeaderB extends ComponentKnowledge {
+public class LeaderB extends Component {
 	
 	public String name;
 	public List<Waypoint> path;
@@ -38,12 +38,12 @@ public class LeaderB extends ComponentKnowledge {
 		position = new Waypoint(1,0);
 	}
 	
-	@DEECoProcess
-	@DEECoPeriodicScheduling(1000)
+	@Process
+	@PeriodicScheduling(1000)
 	public static void moveProcess(
-			@DEECoInOut("path") List<Waypoint> path,
-			@DEECoIn("name") String name,
-			@DEECoInOut("position") Waypoint me
+			@InOut("path") List<Waypoint> path,
+			@In("name") String name,
+			@InOut("position") Waypoint me
 			) {
 		
 		if (!path.isEmpty() && me.equals(path.get(0))) {

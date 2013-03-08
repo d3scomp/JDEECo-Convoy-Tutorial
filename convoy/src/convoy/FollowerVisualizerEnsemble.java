@@ -4,35 +4,35 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsemble;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsembleMapper;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsembleMembership;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoIn;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoInOut;
-import cz.cuni.mff.d3s.deeco.annotations.DEECoPeriodicScheduling;
+import cz.cuni.mff.d3s.deeco.annotations.KnowledgeExchange;
+import cz.cuni.mff.d3s.deeco.annotations.Membership;
+import cz.cuni.mff.d3s.deeco.annotations.In;
+import cz.cuni.mff.d3s.deeco.annotations.InOut;
+import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
 import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.BoardObject;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.Position;
 
 @DEECoEnsemble
-@DEECoPeriodicScheduling(150)
+@PeriodicScheduling(150)
 public class FollowerVisualizerEnsemble extends Ensemble {
 	
-	@DEECoEnsembleMembership
-	public static boolean membership(@DEECoInOut("coord.components") Map<String, BoardObject> components,
-			@DEECoIn("member.id") String id,
-			@DEECoIn("member.name") String name,
-			@DEECoIn("member.destination") Waypoint destination,
-			@DEECoIn("member.position") Waypoint position) {	
+	@Membership
+	public static boolean membership(@InOut("coord.components") Map<String, BoardObject> components,
+			@In("member.id") String id,
+			@In("member.name") String name,
+			@In("member.destination") Waypoint destination,
+			@In("member.position") Waypoint position) {	
 		return true;
 	}
 
-	@DEECoEnsembleMapper
+	@KnowledgeExchange
 	public static void map(
-			@DEECoInOut("coord.components") Map<String, BoardObject> components,
-			@DEECoIn("member.id") String id,
-			@DEECoIn("member.name") String name,
-			@DEECoIn("member.destination") Waypoint destination,
-			@DEECoIn("member.position") Waypoint position
+			@InOut("coord.components") Map<String, BoardObject> components,
+			@In("member.id") String id,
+			@In("member.name") String name,
+			@In("member.destination") Waypoint destination,
+			@In("member.position") Waypoint position
 			) {
 		BoardObject bo;
 		if (components.keySet().contains(id)) {
