@@ -3,14 +3,12 @@ package convoy;
 import java.util.LinkedList;
 import java.util.List;
 
-import cz.cuni.mff.d3s.deeco.annotations.DEECoComponent;
 import cz.cuni.mff.d3s.deeco.annotations.In;
 import cz.cuni.mff.d3s.deeco.annotations.InOut;
 import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
 import cz.cuni.mff.d3s.deeco.annotations.Process;
 import cz.cuni.mff.d3s.deeco.knowledge.Component;
 
-@DEECoComponent
 public class LeaderA extends Component {
 	
 	public String name;

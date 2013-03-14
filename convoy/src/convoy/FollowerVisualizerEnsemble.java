@@ -3,7 +3,6 @@ package convoy;
 import java.util.LinkedList;
 import java.util.Map;
 
-import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsemble;
 import cz.cuni.mff.d3s.deeco.annotations.KnowledgeExchange;
 import cz.cuni.mff.d3s.deeco.annotations.Membership;
 import cz.cuni.mff.d3s.deeco.annotations.In;
@@ -13,7 +12,6 @@ import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.BoardObject;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.Position;
 
-@DEECoEnsemble
 @PeriodicScheduling(150)
 public class FollowerVisualizerEnsemble extends Ensemble {
 	

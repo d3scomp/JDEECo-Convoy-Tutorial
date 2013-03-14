@@ -2,7 +2,6 @@ package convoy;
 
 import java.util.List;
 
-import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsemble;
 import cz.cuni.mff.d3s.deeco.annotations.KnowledgeExchange;
 import cz.cuni.mff.d3s.deeco.annotations.Membership;
 import cz.cuni.mff.d3s.deeco.annotations.In;
@@ -11,7 +10,7 @@ import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
 import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
 import cz.cuni.mff.d3s.deeco.knowledge.OutWrapper;
 
-@DEECoEnsemble
+
 @PeriodicScheduling(200)
 public class ConvoyEnsemble extends Ensemble {
 
@@ -33,6 +32,6 @@ public class ConvoyEnsemble extends Ensemble {
 			@Out("member.leaderPosition") OutWrapper<Waypoint> fLeaderPosition,
 			@In("coord.position") Waypoint lPosition) {
 		
-		fLeaderPosition.item = lPosition;
+		fLeaderPosition.value = lPosition;
 	}
 }
