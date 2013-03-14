@@ -11,7 +11,7 @@ import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
 import cz.cuni.mff.d3s.deeco.knowledge.OutWrapper;
 
 
-@PeriodicScheduling(200)
+
 public class ConvoyEnsemble extends Ensemble {
 
 	@Membership
@@ -28,6 +28,7 @@ public class ConvoyEnsemble extends Ensemble {
 	}
 
 	@KnowledgeExchange
+	@PeriodicScheduling(200)
 	public static void map(
 			@Out("member.leaderPosition") OutWrapper<Waypoint> fLeaderPosition,
 			@In("coord.position") Waypoint lPosition) {
