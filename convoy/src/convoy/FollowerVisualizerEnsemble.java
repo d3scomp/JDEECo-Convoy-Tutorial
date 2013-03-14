@@ -12,7 +12,7 @@ import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.BoardObject;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.Position;
 
-@PeriodicScheduling(150)
+
 public class FollowerVisualizerEnsemble extends Ensemble {
 	
 	@Membership
@@ -25,6 +25,7 @@ public class FollowerVisualizerEnsemble extends Ensemble {
 	}
 
 	@KnowledgeExchange
+	@PeriodicScheduling(150)
 	public static void map(
 			@InOut("coord.components") Map<String, BoardObject> components,
 			@In("member.id") String id,
