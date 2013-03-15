@@ -88,14 +88,12 @@ package convoy;
 import java.util.LinkedList;
 import java.util.List;
 
-import cz.cuni.mff.d3s.deeco.annotations.DEECoComponent;
 import cz.cuni.mff.d3s.deeco.annotations.In;
 import cz.cuni.mff.d3s.deeco.annotations.InOut;
 import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
 import cz.cuni.mff.d3s.deeco.annotations.Process;
 import cz.cuni.mff.d3s.deeco.knowledge.Component;
 
-@DEECoComponent
 public class LeaderA extends Component {
 	
 	public String name;
@@ -145,14 +143,12 @@ public class LeaderA extends Component {
 ```java
 package convoy;
 
-import cz.cuni.mff.d3s.deeco.annotations.DEECoComponent;
 import cz.cuni.mff.d3s.deeco.annotations.In;
 import cz.cuni.mff.d3s.deeco.annotations.InOut;
 import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
 import cz.cuni.mff.d3s.deeco.annotations.Process;
 import cz.cuni.mff.d3s.deeco.knowledge.Component;
 
-@DEECoComponent
 public class Follower extends Component {
 
 	public String name = "F";
@@ -184,7 +180,6 @@ package convoy;
 
 import java.util.List;
 
-import cz.cuni.mff.d3s.deeco.annotations.DEECoEnsemble;
 import cz.cuni.mff.d3s.deeco.annotations.KnowledgeExchange;
 import cz.cuni.mff.d3s.deeco.annotations.Membership;
 import cz.cuni.mff.d3s.deeco.annotations.In;
@@ -193,8 +188,6 @@ import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
 import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
 import cz.cuni.mff.d3s.deeco.knowledge.OutWrapper;
 
-@DEECoEnsemble
-@PeriodicScheduling(200)
 public class ConvoyEnsemble extends Ensemble {
 
 	@Membership
@@ -211,11 +204,12 @@ public class ConvoyEnsemble extends Ensemble {
 	}
 
 	@KnowledgeExchange
+	@PeriodicScheduling(200)
 	public static void map(
 			@Out("member.leaderPosition") OutWrapper<Waypoint> fLeaderPosition,
 			@In("coord.position") Waypoint lPosition) {
 		
-		fLeaderPosition.item = lPosition;
+		fLeaderPosition.value = lPosition;
 	}
 }
 ```
@@ -227,7 +221,7 @@ The `LauncherLocal` class main method instantiates the DEECo runtime, which auto
 ### Robot Follower and robot Leader
 
 Basically there are two robot roles "Leader" and "Follower", which have their own Java class definitions.
-Each of those classes extends the `Component` type, which describes knowledge of a particular component (i.e. top-level node in the tree knowledge structure). Additionally they are marked with the `@DEECoComponent` annotation, allowing the system to properly identify component classes. In this case both components put additional **public** fields to their definitions to describe their knowledge.
+Each of those classes extends the `Component` type, which marks the classes as jDEECo component definitions. In this case both components put additional **public** fields to their definitions to describe their knowledge (i.e. top-level node in the tree knowledge structure).
 Apart from it, each component is expected to have at least one process method which executes relying on component data. Such method is tagged with `@Process` annotation and can take  a random number of properly tagged parameters. Allowed annotations for the process method parameters are:
 `@In`, `@Out` and `@InOut`. Parameters marked as an input will be retrieved from the knowledge but never stored back after the execution. Those marked as an output, will be first instantiated (using non-parameterized constructors for the class) and pass to the method before its execution. When the execution completes, they are stored in the knowledge. Parameters, annotated as both input and output, are first retrieved from the knowledge and then (after the method execution) stored back to it. Each of those annotations contains the `value` attribute, which specifies the parameter name together with the knowledge nesting path. To explain it, let's consider the following parameter:
 `@InOut("position") OutWrapper<Integer> me`. For this parameter the `value` attribute is the"position", which means that the required (as it is also an input parameter) knowledge value will be searched in the knowledge structure under the node: `Follower.position`. The "Follower" at the beginning denotes the particular knowledge id. As it was mentioned before, it is possible to use nesting paths in a parameter annotation attribute.
@@ -239,9 +233,11 @@ As the name indicates, this annotation allows for describing process method exec
 ### Convoy ensemble
 
 To let the follower robot to follow the leader we need to establish an ensemble between those robots.
-In jDEECo ensembles are defined as the first class objects.
-Similarly to the component class, it is tagged with the annotation `@DEECoEnsemble` and it extends the `Ensemble` class. The `ConvoyEnsemble` is executed periodically, which is expressed by additional annotation before the class header - `@PeriodicScheduling`.
-In the ensemble definition there are two important methods: the ensemble membership function and the knowledge exchange function. To properly identify them, annotations (`@Membership` and `@KnowledgeExchange` respectively) are used, before the method headers. In both cases, a method can accept a random number of parameters, but in case of the membership checking function those parameters can be of input type only. Additionally in the `ConvoyEnsemble`, the method tagged with `@Membership` annotation returns a boolean value indicating when the ensemble can be established. As it is depicted in the code above, method parameters are also tagged. The rules from the process method parameters apply here as well and the only difference is the additional distinguishment between coordinator and member parameters. To find out more details about what it means, please refer to the DEECo component model description (Ensemble describing part).
+In jDEECo an ensemble is defined as a first class object by a Java class.
+Similarly to the component class, each ensemble class extends the `Ensemble` type, which marks the class as a jDEECo ensemble definition. 
+In the ensemble definition there are two important methods: the ensemble membership function and the knowledge exchange function. To properly identify them, annotations (`@Membership` and `@KnowledgeExchange` respectively) are used, before the method headers. In both cases, a method can accept a random number of parameters, but in case of the membership checking function those parameters can be of input type only. Additionally in the `ConvoyEnsemble`, the method tagged with `@Membership` annotation returns a boolean value indicating when the ensemble can be established. As it is depicted in the code above, method parameters are also tagged. The rules from the process method parameters apply here as well and the only difference is the additional distinguishment between coordinator and member parameters. 
+The fact that knowledge exchange of `ConvoyEnsemble` is executed periodically is expressed by an annotation (similarly to component processes) of the `@KnowledgeExchange` method - `@PeriodicScheduling`.
+To find out more details about what it means, please refer to the DEECo component model description (Ensemble describing part).
 
 * * *
 
