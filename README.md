@@ -2,7 +2,7 @@ JDEECo Convoy Tutorial
 ======================
 
 This project contains the source code of the **Convoy example** implementation in the **jDEECo framework**.
-jDEECo is a Java implementation of the DEECo domponent system (the source code and documentation of jDEECo is available at https://github.com/d3scomp/JDEECo).
+jDEECo is a Java implementation of the DEECo component system (the source code and documentation of jDEECo is available at https://github.com/d3scomp/JDEECo).
 
 ###Example Scenario Description
 There are two robots named "Leader" and "Follower". The leader moves along some arbitrary path (composed by the list of intermediate positions, which reflect fields on some abstract map, being a grid). The follower remains idle until the leader heading through Follower's destination passes next to it (Leader crosses Follower's current position). When that happens, the follower starts to move following the leader.
