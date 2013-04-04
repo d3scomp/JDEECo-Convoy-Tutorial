@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/jfxrt.jar"/>
-	<classpathentry kind="lib" path="libs/jdeeco.jar"/>
 	<classpathentry kind="lib" path="libs/visualizer.jar"/>
+	<classpathentry kind="lib" path="libs/jdeeco.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
