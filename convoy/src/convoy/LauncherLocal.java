@@ -1,16 +1,16 @@
 package convoy;
 
-import java.util.Arrays;
-import java.util.List;
+import cz.cuni.mff.d3s.deeco.annotations.processor.AnnotationProcessor;
+import cz.cuni.mff.d3s.deeco.annotations.processor.AnnotationProcessorException;
+import cz.cuni.mff.d3s.deeco.model.runtime.api.RuntimeMetadata;
+import cz.cuni.mff.d3s.deeco.model.runtime.custom.RuntimeMetadataFactoryExt;
+import cz.cuni.mff.d3s.deeco.runtime.RuntimeConfiguration;
+import cz.cuni.mff.d3s.deeco.runtime.RuntimeConfiguration.Distribution;
+import cz.cuni.mff.d3s.deeco.runtime.RuntimeConfiguration.Execution;
+import cz.cuni.mff.d3s.deeco.runtime.RuntimeConfiguration.Scheduling;
+import cz.cuni.mff.d3s.deeco.runtime.RuntimeFramework;
+import cz.cuni.mff.d3s.deeco.runtime.RuntimeFrameworkBuilder;
 
-import cz.cuni.mff.d3s.deeco.knowledge.KnowledgeManager;
-import cz.cuni.mff.d3s.deeco.knowledge.RepositoryKnowledgeManager;
-import cz.cuni.mff.d3s.deeco.knowledge.local.LocalKnowledgeRepository;
-import cz.cuni.mff.d3s.deeco.provider.AbstractDEECoObjectProvider;
-import cz.cuni.mff.d3s.deeco.provider.ClassDEECoObjectProvider;
-import cz.cuni.mff.d3s.deeco.runtime.Runtime;
-import cz.cuni.mff.d3s.deeco.scheduling.MultithreadedScheduler;
-import cz.cuni.mff.d3s.deeco.scheduling.Scheduler;
 
 /** Launcher for the local deployment.
  * This class provides code that instantiates the necessary jDEECo infrastructure on a single node,
@@ -18,27 +18,23 @@ import cz.cuni.mff.d3s.deeco.scheduling.Scheduler;
  */
 public class LauncherLocal {
 
-	public static void main(String[] args) {
-		List<Class<?>> components = Arrays.asList(new Class<?>[] {
-				LeaderA.class, 
-				LeaderB.class, 
-				Follower.class,
-				Visualizer.class,
-		});
+	public static void main(String[] args) throws AnnotationProcessorException {
+
+		AnnotationProcessor processor = new AnnotationProcessor(RuntimeMetadataFactoryExt.eINSTANCE);
+		RuntimeMetadata model = RuntimeMetadataFactoryExt.eINSTANCE.createRuntimeMetadata();
 		
-		List<Class<?>> ensembles = Arrays.asList(new Class<?>[] { 
-				ConvoyEnsemble.class,
-				LeaderVisualizerEnsemble.class,
-				FollowerVisualizerEnsemble.class
-		});
+		processor.process(model, 
+							new LeaderA(), new LeaderB(), new Follower(), new Visualizer(), // Components 
+							ConvoyEnsemble.class, LeaderVisualizerEnsemble.class, FollowerVisualizerEnsemble.class // Ensembles
+							);
 		
-		KnowledgeManager km = new RepositoryKnowledgeManager(new LocalKnowledgeRepository());
-		Scheduler scheduler = new MultithreadedScheduler();
-		AbstractDEECoObjectProvider provider = new ClassDEECoObjectProvider(components, ensembles);
-		
-		final Runtime rt = new Runtime(km, scheduler);
-		rt.registerComponentsAndEnsembles(provider);
-		rt.startRuntime();
+		RuntimeFrameworkBuilder builder = new RuntimeFrameworkBuilder(
+				new RuntimeConfiguration(
+						Scheduling.WALL_TIME, 
+						Distribution.LOCAL, 
+						Execution.SINGLE_THREADED));
+		RuntimeFramework runtime = builder.build(model); 
+		runtime.start();
 	}
 
 }

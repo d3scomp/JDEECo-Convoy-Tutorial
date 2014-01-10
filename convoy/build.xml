@@ -1,29 +1,74 @@
-<project name="JDEECo-Convoy-Tutorial" default="build" basedir=".">
-	<description>JDEECo-Convoy-Tutorial build file</description>
-	
-	<property name="bin" location="${basedir}/bin"/>
-	<property name="src" location="${basedir}/src"/>
-	<property name="lib" location="${basedir}/libs"/>
-		
-	<target name="build">
-		<mkdir dir="${bin}"/>
-		 <javac srcdir="${src}" destdir="${bin}" source="1.7" includeantruntime="false">
-		 	<classpath>				
-				<fileset dir="${lib}" includes="*.jar"/>								
-			</classpath>
-		 </javac>
-	</target>
-
-	<target name="run" depends="build">
-		<java fork="true" dir="${basedir}" classname="convoy.LauncherLocal" >
-			<classpath>
-				<pathelement location="${bin}"/>
-				<fileset dir="${lib}" includes="*.jar"/>								
-			</classpath>
-		</java>
-	</target>
-	
-	<target name="clean">
-		<delete dir="${bin}"/>		 
-	</target>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="convoy">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="C:/eclipse"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="convoy.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="libs/visualizer.jar"/>
+        <pathelement location="libs/jdeeco.jar"/>
+        <pathelement location="libs/jfxrt.jar"/>
+        <pathelement location="libs/cloning-1.9.0.jar"/>
+        <pathelement location="libs/objenesis-1.2.jar"/>
+        <pathelement location="libs/org.eclipse.emf.common-2.9.0-v20130528-0742.jar"/>
+        <pathelement location="libs/org.eclipse.emf.ecore-2.9.0-v20130528-0742.jar"/>
+        <pathelement location="libs/org.eclipse.emf.ecore.xmi-2.9.0-v20130528-0742.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="convoy.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="ConvoyTest">
+        <java classname="cz.cuni.mff.d3s.deeco.demo.convoy.ConvoyTest" failonerror="true" fork="yes">
+            <classpath refid="convoy.classpath"/>
+        </java>
+    </target>
+    <target name="LauncherLocal">
+        <java classname="convoy.LauncherLocal" failonerror="true" fork="yes">
+            <classpath refid="convoy.classpath"/>
+        </java>
+    </target>
+    <target name="Visualizer (1)">
+        <java classname="cz.cuni.mff.d3s.jdeeco.visualization.map.Visualizer" failonerror="true" fork="yes">
+            <classpath refid="convoy.classpath"/>
+        </java>
+    </target>
 </project>

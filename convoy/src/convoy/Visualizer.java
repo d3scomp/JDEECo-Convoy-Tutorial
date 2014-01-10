@@ -6,14 +6,13 @@ import java.util.Map;
 import cz.cuni.mff.d3s.deeco.annotations.In;
 import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
 import cz.cuni.mff.d3s.deeco.annotations.Process;
-import cz.cuni.mff.d3s.deeco.knowledge.Component;
-import cz.cuni.mff.d3s.deeco.runtime.Runtime;
+import cz.cuni.mff.d3s.deeco.annotations.Component;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.Board;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.BoardObject;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.IStoppable;
 
-
-public class Visualizer extends Component {
+@Component
+public class Visualizer {
 
 	public Map<String, BoardObject> components = new HashMap<String, BoardObject>();
 	
@@ -23,7 +22,7 @@ public class Visualizer extends Component {
 		bInstance.setStoppable(new IStoppable() {
 			@Override
 			public void stop() {
-				Runtime.getDefaultRuntime().stopRuntime();
+				//Runtime.getDefaultRuntime().stopRuntime();
 			}
 		});
 	}

@@ -2,8 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs/jfxrt.jar"/>
 	<classpathentry kind="lib" path="libs/visualizer.jar"/>
-	<classpathentry kind="lib" path="libs/jdeeco.jar"/>
+	<classpathentry kind="lib" path="libs/jdeeco.jar" sourcepath="/cz.cuni.mff.d3s.jdeeco.core"/>
+	<classpathentry kind="lib" path="libs/jfxrt.jar"/>
+	<classpathentry kind="lib" path="libs/cloning-1.9.0.jar"/>
+	<classpathentry kind="lib" path="libs/objenesis-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/org.eclipse.emf.common-2.9.0-v20130528-0742.jar"/>
+	<classpathentry kind="lib" path="libs/org.eclipse.emf.ecore-2.9.0-v20130528-0742.jar"/>
+	<classpathentry kind="lib" path="libs/org.eclipse.emf.ecore.xmi-2.9.0-v20130528-0742.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

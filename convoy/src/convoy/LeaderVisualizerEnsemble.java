@@ -9,12 +9,14 @@ import cz.cuni.mff.d3s.deeco.annotations.Membership;
 import cz.cuni.mff.d3s.deeco.annotations.In;
 import cz.cuni.mff.d3s.deeco.annotations.InOut;
 import cz.cuni.mff.d3s.deeco.annotations.PeriodicScheduling;
-import cz.cuni.mff.d3s.deeco.ensemble.Ensemble;
+import cz.cuni.mff.d3s.deeco.annotations.Ensemble;
+import cz.cuni.mff.d3s.deeco.task.ParamHolder;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.BoardObject;
 import cz.cuni.mff.d3s.jdeeco.visualization.map.Position;
 
-
-public class LeaderVisualizerEnsemble extends Ensemble {
+@Ensemble
+@PeriodicScheduling(150)
+public class LeaderVisualizerEnsemble {
 	
 	@Membership
 	public static boolean membership(
@@ -27,17 +29,16 @@ public class LeaderVisualizerEnsemble extends Ensemble {
 	}
 
 	@KnowledgeExchange
-	@PeriodicScheduling(150)
 	public static void map(
-			@InOut("coord.components") Map<String, BoardObject> components,
+			@InOut("coord.components") ParamHolder<Map<String, BoardObject>> components,
 			@In("member.id") String id,
 			@In("member.name") String name,
 			@In("member.path") List<Waypoint> path,
 			@In("member.position") Waypoint position
 			) {
 		BoardObject bo;
-		if (components.keySet().contains(id)) {
-			bo = components.get(id);
+		if (components.value.keySet().contains(id)) {
+			bo = components.value.get(id);
 			bo.positions.clear();
 		} else {
 			bo = new BoardObject(id, new LinkedList<Position>(), "red", name);
@@ -46,6 +47,6 @@ public class LeaderVisualizerEnsemble extends Ensemble {
 			bo.positions.add(new Position(waypoint.x, waypoint.y));
 		}
 		bo.positions.add(0, new Position(position.x, position.y));
-		components.put(id, bo);
+		components.value.put(id, bo);
 	}
 }

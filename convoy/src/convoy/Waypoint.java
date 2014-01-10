@@ -1,10 +1,8 @@
 package convoy;
 
-import cz.cuni.mff.d3s.deeco.knowledge.Knowledge;
-
 /** Represents a position in a 2D plane.
  */
-public class Waypoint extends Knowledge {
+public class Waypoint {
 	public Waypoint() {	
 	}
 	
