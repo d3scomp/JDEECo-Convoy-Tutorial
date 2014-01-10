@@ -295,7 +295,7 @@ In jDEECo an ensemble is defined as a first class object by a Java class.
 Similarly to the component class, each ensemble class is annotated with`@Ensemble` annotation, which marks the class as a jDEECo ensemble definition.
 In the ensemble definition there are two important methods: the ensemble membership function and the knowledge exchange function. To properly identify them, annotations (`@Membership` and `@KnowledgeExchange` respectively) are used, before the method headers. In both cases, a method can accept a random number of parameters, but in case of the membership checking function those parameters can be of input type only. Additionally in the `ConvoyEnsemble`, the method tagged with `@Membership` annotation returns a boolean value indicating when the ensemble can be established. As it is depicted in the code above, method parameters are also tagged. The rules from the process method parameters apply here as well and the only difference is the additional distinguishment between coordinator and member parameters. 
 The fact that knowledge exchange of `ConvoyEnsemble` is executed periodically is expressed by an annotating (similarly to component processes) the ensemble class with `@PeriodicScheduling`, after `@Ensemble` annotation.
-To find out more details about what it means, please refer to the DEECo component model description (Ensemble describing part).
+To find out more details about what it means, please refer to the DEECo component model description (Ensemble description part).
 
 * * *
 
